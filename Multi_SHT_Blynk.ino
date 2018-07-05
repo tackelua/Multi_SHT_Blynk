@@ -26,6 +26,8 @@
 #define BLYNK_PRINT Serial
 #include <BlynkSimpleEsp8266.h>
 
+#define version 0.2
+
 #define dataPin  10
 #define clockPin 11
 SHT1x sht1x(dataPin, clockPin);
@@ -38,6 +40,13 @@ SHT1x sht1x(dataPin, clockPin);
 
 bool flag_read_sensor = false;
 
+/*
+72fe006d966d44df848e05c32998c0ca
+6bc282ef37d34204bba5148e4cb2fcbb
+7b9377e48ad14fba86b0bf87090fc7a4
+526263c6eb9049328178f9f10e05e483
+3472c62a33884e97bd48450418ffcdcc
+*/
 char auth[] = "72fe006d966d44df848e05c32998c0ca";
 
 void LED_ON() {
@@ -128,9 +137,10 @@ void update_sensor_data() {
 void setup()
 {
 	Serial.begin(74880);
+	pinMode(LED_BUILTIN, OUTPUT);
 	WiFi_init();
 	Blynk_init();
-
+	Serial.println("\r\nStart");
 }
 
 // Add the main program code into the continuous loop() function
